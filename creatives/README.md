@@ -8,7 +8,7 @@ Static 1080×1080 social creatives built on the backgrounds in this repo.
 
 ## Rendering
 
-The HTML is a fixed 1080×1080 stage with locally bundled fonts (`fonts.css` + `fonts/`),
+The HTML is a fixed 1080×1080 stage with locally bundled fonts — Geist for the headline and sub-copy, Geist Mono for the flow visual and CTA (`fonts.css` + `fonts/`),
 so it renders identically offline. To re-render after an edit:
 
 ```bash
