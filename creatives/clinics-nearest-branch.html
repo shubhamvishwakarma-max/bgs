@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DoubleTick Clinics — Nearest Branch Routing</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root{
+    --paper:#F2F1EA;
+    --maroon:#8F2627;
+    --maroon-deep:#6E1B1C;
+    --ink:#14130F;
+    --muted:#8B8779;
+    --line:#E4E1D6;
+    --wa:#128C4A;
+    --mono:'Geist Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#fff}
+  .stage{
+    position:relative;width:1080px;height:1080px;overflow:hidden;
+    background:url('../dt_clinics_uae_static_ad_01_v1.png') center/cover no-repeat;
+    font-family:'Geist',sans-serif;-webkit-font-smoothing:antialiased;
+  }
+
+  /* faint map plane behind the flow */
+  .map{position:absolute;left:80px;top:556px;width:920px;height:350px;opacity:.75}
+
+  /* dotted route */
+  .route{position:absolute;left:80px;top:556px;width:920px;height:350px}
+
+  /* ---------- patient ---------- */
+  .bubble{
+    position:absolute;left:80px;top:640px;width:292px;
+    background:#fff;border:1px solid var(--line);border-radius:16px 16px 16px 4px;
+    padding:18px 20px;box-shadow:0 10px 26px rgba(40,30,20,.07);
+    font-size:18px;line-height:26px;color:var(--ink);font-weight:500;
+  }
+  .chip{
+    position:absolute;left:80px;top:732px;display:flex;align-items:center;gap:7px;
+    background:#E8F6EE;padding:7px 12px;border-radius:20px;
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;color:var(--wa);
+  }
+
+  /* ---------- AI card ---------- */
+  .ai{
+    position:absolute;left:400px;top:628px;width:300px;
+    background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:20px;box-shadow:0 18px 40px rgba(40,30,20,.11);
+  }
+  .ai .brand{display:flex;align-items:center;gap:8px}
+  .ai .brand b{font-size:14.5px;font-weight:600;color:var(--ink);letter-spacing:-.1px}
+  .ai .msg{margin-top:12px;font-size:17px;line-height:25px;color:var(--ink);font-weight:500}
+  .ai .btn{
+    margin-top:18px;height:44px;border-radius:9px;background:var(--maroon);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:14px;font-weight:600;letter-spacing:.2px;
+  }
+
+  /* ---------- clinic pins ---------- */
+  .pin{
+    position:absolute;left:740px;width:260px;
+    border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.62);
+    display:flex;align-items:center;gap:12px;padding:0 16px;height:58px;
+  }
+  .pin .nm{font-size:15px;font-weight:500;color:var(--muted)}
+  .pin.a{top:596px}
+  .pin.c{top:818px}
+
+  .pin.hero{
+    top:670px;height:132px;background:#fff;border:1.5px solid var(--maroon);
+    box-shadow:0 20px 44px rgba(143,38,39,.16);
+    flex-direction:column;align-items:stretch;justify-content:center;
+    gap:0;padding:0 18px;
+  }
+  .pin.hero .row{display:flex;align-items:center;gap:12px}
+  .pin.hero .nm{font-size:17.5px;font-weight:600;color:var(--ink)}
+  .pin.hero .km{
+    margin-top:6px;margin-left:38px;font-family:var(--mono);
+    font-size:11.5px;font-weight:500;letter-spacing:1.4px;color:var(--muted);
+  }
+  .pin.hero .appt{
+    margin-top:13px;padding-top:12px;border-top:1px solid #F0E3E3;
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:14px;font-weight:600;color:var(--maroon);
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <svg class="map" viewBox="0 0 920 350">
+    <defs>
+      <linearGradient id="roadfade" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#D6D2C4" stop-opacity="0"/>
+        <stop offset=".18" stop-color="#D6D2C4" stop-opacity=".85"/>
+        <stop offset=".82" stop-color="#D6D2C4" stop-opacity=".85"/>
+        <stop offset="1" stop-color="#D6D2C4" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g stroke="#E0DDD1" stroke-width="1" fill="none">
+      <path d="M0 62 H920"/><path d="M0 164 H920"/><path d="M0 266 H920"/>
+      <path d="M126 0 V350"/><path d="M328 0 V350"/><path d="M530 0 V350"/><path d="M732 0 V350"/>
+    </g>
+    <g stroke="url(#roadfade)" stroke-width="8" fill="none" stroke-linecap="round">
+      <path d="M0 236 C 170 236, 220 118, 404 118 S 706 246, 920 200"/>
+      <path d="M0 96 C 150 96, 176 186, 300 214 S 560 330, 920 312"/>
+    </g>
+  </svg>
+
+  <svg class="route" viewBox="0 0 920 350">
+    <g fill="none" stroke="#8F2627" stroke-width="2.6" stroke-linecap="round"
+       stroke-dasharray="2 10" opacity=".7">
+      <path d="M120 204 C 208 296, 336 322, 438 302 S 618 244, 652 184"/>
+    </g>
+    <circle cx="120" cy="204" r="5" fill="#8F2627" opacity=".8"/>
+    <path d="M652 184 l-9 5.5 1.6 -6.4 -4.6 -4.7 6.6 -.5z" fill="#8F2627" opacity=".8"/>
+  </svg>
+
+  <!-- patient -->
+  <div class="bubble">“Laser treatment near me”</div>
+  <div class="chip">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="#128C4A">
+      <path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20z"/>
+      <path d="M9 7.6c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.4s-.9.9-.9 2.1.9 2.5 1 2.6c.1.2 1.7 2.7 4.2 3.7 2.1.8 2.5.7 3 .6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.3-1.6-.8c-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1s-1-.4-1.9-1.2c-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.5L9 7.6z"/>
+    </svg>
+    CLICKED WHATSAPP AD
+  </div>
+
+  <!-- DoubleTick AI -->
+  <div class="ai">
+    <div class="brand">
+      <svg width="22" height="14" viewBox="0 0 30 18" fill="none" stroke="#1BAF72"
+           stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 10.2l4.6 4.6L16.4 4"/><path d="M12.6 12.4l2.4 2.4L27 3"/>
+      </svg>
+      <b>DoubleTick AI</b>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="#8F2627">
+        <path d="M12 1.5l2.2 6.4 6.3 2.1-6.3 2.1L12 22.5l-2.2-6.4-6.3-2.1 6.3-2.1z"/>
+      </svg>
+    </div>
+    <div class="msg">“Jumeirah is your nearest clinic.”</div>
+    <div class="btn">Book consultation</div>
+  </div>
+
+  <!-- clinic pins -->
+  <div class="pin a">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#B4AFA0">
+      <path d="M12 2c-3.9 0-7 3.1-7 7 0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.6A2.6 2.6 0 1112 6.4a2.6 2.6 0 010 5.2z"/>
+    </svg>
+    <div class="nm">Clinic – Downtown</div>
+  </div>
+
+  <div class="pin hero">
+    <div class="row">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="#8F2627">
+        <path d="M12 1.6c-4.2 0-7.6 3.4-7.6 7.6 0 5.7 7.6 13.2 7.6 13.2s7.6-7.5 7.6-13.2c0-4.2-3.4-7.6-7.6-7.6z"/>
+        <path d="M11.1 5.4h1.8v2.4h2.4v1.8h-2.4V12h-1.8V9.6H8.7V7.8h2.4z" fill="#fff"/>
+      </svg>
+      <div class="nm">Jumeirah Clinic</div>
+    </div>
+    <div class="km">2.1 KM AWAY</div>
+    <div class="appt"><span>Appointment</span><span>→</span></div>
+  </div>
+
+  <div class="pin c">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#B4AFA0">
+      <path d="M12 2c-3.9 0-7 3.1-7 7 0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.6A2.6 2.6 0 1112 6.4a2.6 2.6 0 010 5.2z"/>
+    </svg>
+    <div class="nm">Clinic – Marina</div>
+  </div>
+
+</div>
+</body>
+</html>
