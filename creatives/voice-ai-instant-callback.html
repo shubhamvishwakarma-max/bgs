@@ -10,108 +10,134 @@
     --alert:#FF4B4B;
     --card:#F7F9F8;
     --ink:#0C1410;
+    --mono:'Geist Mono',monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{background:#000}
   .stage{
-    position:relative;
-    width:1080px;height:1080px;
-    overflow:hidden;
+    position:relative;width:1080px;height:1080px;overflow:hidden;
     background:url('../bg_01.png') center/cover no-repeat;
-    font-family:'Geist',sans-serif;
-    -webkit-font-smoothing:antialiased;
+    font-family:'Geist',sans-serif;-webkit-font-smoothing:antialiased;
   }
 
   /* ---------- headline (inside the bg's top panel: y 120 → 355) ---------- */
   .headline{
     position:absolute;left:80px;top:120px;width:920px;height:235px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:2px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
     color:#fff;font-weight:700;font-size:53px;line-height:78px;letter-spacing:-.6px;
     text-align:center;
   }
   .headline em{font-style:normal;color:var(--alert)}
 
-  /* ---------- sub copy ---------- */
   .sub{
-    position:absolute;left:110px;top:400px;width:860px;
-    text-align:center;
-    color:#C6D5CD;font-weight:400;font-size:23px;line-height:39px;letter-spacing:.1px;
+    position:absolute;left:110px;top:360px;width:860px;text-align:center;
+    color:#C6D5CD;font-weight:400;font-size:22px;line-height:34px;
   }
 
-  /* ---------- flow visual ---------- */
-  .node{
-    position:absolute;width:132px;height:130px;border-radius:20px;
-    background:var(--card);
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 18px 40px rgba(0,0,0,.45);
+  /* ---------- background layers behind the phone ---------- */
+  .towers{position:absolute;left:0;top:600px;width:1080px;height:390px;opacity:.11}
+  .ghost{
+    position:absolute;top:566px;font-size:150px;font-weight:700;
+    letter-spacing:-5px;line-height:1;color:rgba(255,75,75,.10);
+    -webkit-text-stroke:3px rgba(255,82,82,.42);
   }
-  .node.lead{left:145px;top:587px}
-  .node.broker{left:803px;top:587px}
-  .node-label{
-    position:absolute;top:740px;width:132px;text-align:center;
-    font-family:'Geist Mono',monospace;color:#fff;font-size:13px;font-weight:500;letter-spacing:3px;
+  .ghost.l{left:170px;width:225px;text-align:right}
+  .ghost.r{left:688px}
+
+  /* ---------- phone ---------- */
+  .phone{
+    position:absolute;left:415px;top:432px;width:250px;height:402px;
+    border-radius:34px;background:#080D0A;padding:9px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.16), 0 34px 80px rgba(0,0,0,.65),
+               0 0 70px rgba(47,224,126,.10);
   }
-  .node-label.lead{left:145px}
-  .node-label.broker{left:803px}
+  .screen{
+    width:232px;height:384px;border-radius:26px;background:#fff;overflow:hidden;
+    padding:10px 12px 12px;display:flex;flex-direction:column;
+  }
+  .island{width:52px;height:11px;border-radius:7px;background:#080D0A;margin:0 auto 11px}
 
-  .wire{position:absolute;top:684px;height:1px;background:linear-gradient(90deg,rgba(47,224,126,.15),rgba(47,224,126,.75));}
-  .wire.l{left:277px;width:103px}
-  .wire.r{left:700px;width:103px;background:linear-gradient(90deg,rgba(47,224,126,.75),rgba(47,224,126,.15))}
-  .pip{position:absolute;top:681px;width:7px;height:7px;background:var(--accent);opacity:.9}
-  .pip.a{left:279px}.pip.b{left:374px}.pip.c{left:699px}.pip.d{left:797px}
+  .row{
+    display:flex;align-items:center;gap:8px;
+    background:#F1F5F2;border:1px solid #E4EBE7;border-radius:10px;padding:9px 10px;
+  }
+  .row .dot{width:7px;height:7px;border-radius:50%;background:#16B45F;flex:0 0 auto;
+            box-shadow:0 0 0 3px rgba(22,180,95,.18)}
+  .row .t{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:-.1px}
 
-  /* centre call card */
   .call{
-    position:absolute;left:380px;top:560px;width:320px;height:205px;
-    background:var(--card);
-    display:flex;flex-direction:column;align-items:center;
-    padding-top:32px;
-    box-shadow:0 26px 60px rgba(0,0,0,.5);
+    margin-top:9px;background:#EAF8F0;border:1px solid #CFEDDD;border-radius:12px;
+    padding:11px 10px 12px;text-align:center;
   }
-  .call .ring{
-    width:56px;height:56px;border-radius:50%;
-    background:radial-gradient(circle at 35% 30%,#2ddb7c,#0e9a55);
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 0 0 8px rgba(47,224,126,.14);
+  .call .hd{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    font-size:11px;font-weight:600;color:#0C8A4E;letter-spacing:-.05px;
   }
-  .call .timer{
-    margin-top:18px;
-    font-family:'Geist Mono',monospace;font-weight:700;font-size:43px;
-    color:var(--ink);letter-spacing:2px;
+  .call .tm{
+    margin-top:7px;font-family:var(--mono);font-size:30px;font-weight:700;
+    color:var(--ink);letter-spacing:1px;line-height:1;
   }
-  .call .status{
-    margin-top:10px;display:flex;align-items:center;gap:8px;
-    font-family:'Geist Mono',monospace;font-size:14px;font-weight:500;color:#17311F;
-  }
-  .call .status i{width:8px;height:8px;border-radius:50%;background:#16b45f;display:block}
+  .wave{display:flex;align-items:center;justify-content:space-between;
+        width:176px;height:26px;margin:9px auto 0}
+  .wave span{width:3px;background:#16B45F;display:block;border-radius:2px}
 
+  .chips{margin-top:9px;display:flex;flex-direction:column;gap:6px}
+  .chip{
+    display:flex;align-items:center;gap:8px;
+    background:#F1F5F2;border:1px solid #E4EBE7;border-radius:9px;padding:7px 10px;
+    font-size:12px;font-weight:500;color:var(--ink);
+  }
 
-  /* drop line from the call card down to the CTA */
-  .drop{position:absolute;left:380px;top:770px;width:2px;height:88px;
-        background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0))}
+  .send{
+    margin-top:auto;height:42px;border-radius:11px;background:#16B45F;
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    color:#fff;font-size:12.5px;font-weight:600;letter-spacing:-.1px;
+  }
 
   /* ---------- CTA ---------- */
-  .cta-shadow{
-    position:absolute;left:252px;top:867px;width:600px;height:80px;
-    border-radius:8px;background:rgba(10,40,26,.75);
-  }
+  .cta-shadow{position:absolute;left:252px;top:867px;width:600px;height:80px;
+              border-radius:8px;background:rgba(10,40,26,.75)}
   .cta{
     position:absolute;left:240px;top:855px;width:600px;height:80px;border-radius:8px;
     background:linear-gradient(100deg,#155f3d 0%,#1b7b50 42%,#35b877 100%);
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.22), 0 12px 34px rgba(0,0,0,.45);
     display:flex;align-items:center;justify-content:center;
-    font-family:'Geist Mono',monospace;color:#fff;font-size:21px;font-weight:600;letter-spacing:4.2px;
+    font-family:var(--mono);color:#fff;font-size:21px;font-weight:600;letter-spacing:4.2px;
   }
   .cta span{padding-left:1px}
-  .dot{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.65)}
-  .dot.tl{left:250px;top:865px}.dot.tr{left:825px;top:865px}
-  .dot.bl{left:250px;top:925px}.dot.br{left:825px;top:925px}
-
+  .dot-c{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.65)}
+  .dot-c.tl{left:250px;top:865px}.dot-c.tr{left:825px;top:865px}
+  .dot-c.bl{left:250px;top:925px}.dot-c.br{left:825px;top:925px}
 </style>
 </head>
 <body>
 <div class="stage">
+
+  <svg class="towers" viewBox="0 0 1080 390" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="tf" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#CFF5E1" stop-opacity=".6"/>
+        <stop offset="1" stop-color="#CFF5E1" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g fill="url(#tf)">
+      <polygon points="54,390 54,214 92,214 92,390"/>
+      <polygon points="106,390 106,158 146,146 146,390"/>
+      <polygon points="162,390 162,246 210,246 210,390"/>
+      <polygon points="226,390 240,92 254,92 268,390"/>
+      <polygon points="286,390 286,196 330,182 330,390"/>
+      <polygon points="346,390 346,262 388,262 388,390"/>
+      <polygon points="692,390 692,254 734,254 734,390"/>
+      <polygon points="750,390 750,150 762,142 792,164 792,390"/>
+      <polygon points="812,390 812,222 856,210 856,390"/>
+      <polygon points="872,390 872,268 914,268 914,390"/>
+      <polygon points="930,390 930,176 974,198 974,390"/>
+      <polygon points="990,390 990,244 1032,244 1032,390"/>
+    </g>
+  </svg>
+
+  <div class="ghost l">5+</div>
+  <div class="ghost r">MIN</div>
 
   <div class="headline">
     <div>Still taking <em>5+ minutes</em></div>
@@ -123,45 +149,61 @@
     and intent, and connects your broker only when the buyer is ready.
   </div>
 
-  <div class="wire l"></div>
-  <div class="wire r"></div>
-  <div class="pip a"></div><div class="pip b"></div>
-  <div class="pip c"></div><div class="pip d"></div>
+  <div class="phone">
+    <div class="screen">
+      <div class="island"></div>
 
-  <!-- NEW LEAD -->
-  <div class="node lead">
-    <svg width="56" height="56" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="8" r="4" fill="#14A862"/>
-      <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7z" fill="#14A862"/>
-    </svg>
-  </div>
-  <div class="node-label lead">NEW LEAD</div>
+      <div class="row">
+        <span class="dot"></span>
+        <span class="t">New Property Lead Received</span>
+      </div>
 
-  <!-- AI CALL -->
-  <div class="call">
-    <div class="ring">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff">
-        <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1.1l-2.3 2.1z"/>
-      </svg>
+      <div class="call">
+        <div class="hd">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#0C8A4E">
+            <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1.1l-2.3 2.1z"/>
+          </svg>
+          DoubleTick Voice AI Calling…
+        </div>
+        <div class="tm">00:01</div>
+        <div class="wave" id="wave"></div>
+      </div>
+
+      <div class="chips">
+        <div class="chip">
+          <svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#16B45F"/><path d="M7 12.3l3.4 3.4L17 9.1" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Budget
+        </div>
+        <div class="chip">
+          <svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#16B45F"/><path d="M7 12.3l3.4 3.4L17 9.1" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Interested
+        </div>
+        <div class="chip">
+          <svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#16B45F"/><path d="M7 12.3l3.4 3.4L17 9.1" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Ready for Viewing
+        </div>
+      </div>
+
+      <div class="send">Qualified <span>→</span> Send to Broker</div>
     </div>
-    <div class="timer">00:01</div>
-    <div class="status"><i></i>AI Calling Now</div>
   </div>
-  <div class="drop"></div>
-
-  <!-- BROKER -->
-  <div class="node broker">
-    <svg width="58" height="58" viewBox="0 0 24 24" fill="#14A862">
-      <path d="M12 2.6c-4.4 0-8 3.6-8 8v5.1c0 1.4 1.1 2.5 2.5 2.5H8c.6 0 1-.4 1-1v-5c0-.6-.4-1-1-1H6v-.6c0-3.3 2.7-6 6-6s6 2.7 6 6v.6h-2c-.6 0-1 .4-1 1v5c0 .6.4 1 1 1h2c0 1-.9 1.6-2.6 1.8-.3-.6-.9-1-1.6-1-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8c.8 0 1.4-.5 1.7-1.2 2.6-.3 4.2-1.5 4.4-3.5.9-.4 1.5-1.3 1.5-2.4v-5.1c0-4.4-3.6-8-8-8z"/>
-    </svg>
-  </div>
-  <div class="node-label broker">BROKER</div>
 
   <div class="cta-shadow"></div>
   <div class="cta"><span>NEVER LET A HOT LEAD GO COLD</span></div>
-  <div class="dot tl"></div><div class="dot tr"></div>
-  <div class="dot bl"></div><div class="dot br"></div>
+  <div class="dot-c tl"></div><div class="dot-c tr"></div>
+  <div class="dot-c bl"></div><div class="dot-c br"></div>
 
 </div>
+<script>
+  // deterministic waveform — fixed amplitudes, no randomness
+  const amps = [5,9,15,7,20,26,13,6,11,22,26,15,8,18,24,11,6,14,20,9,13,24,17,7];
+  const wave = document.getElementById('wave');
+  amps.forEach(a=>{
+    const s = document.createElement('span');
+    s.style.height = a + 'px';
+    s.style.opacity = (0.35 + (a/26)*0.6).toFixed(2);
+    wave.appendChild(s);
+  });
+</script>
 </body>
 </html>
