@@ -41,57 +41,54 @@
     letter-spacing:-5px;line-height:1;color:rgba(255,75,75,.10);
     -webkit-text-stroke:3px rgba(255,82,82,.42);
   }
-  .ghost.l{left:170px;width:225px;text-align:right}
-  .ghost.r{left:688px}
+  .ghost.l{left:130px;width:230px;text-align:right}
+  .ghost.r{left:712px}
 
-  /* ---------- phone ---------- */
+  /* ---------- phone (runs behind the CTA) ---------- */
   .phone{
-    position:absolute;left:415px;top:432px;width:250px;height:402px;
-    border-radius:34px;background:#080D0A;padding:9px;
+    position:absolute;left:390px;top:430px;width:300px;height:494px;
+    border-radius:40px;background:#080D0A;padding:10px;
     box-shadow:0 0 0 1px rgba(255,255,255,.16), 0 34px 80px rgba(0,0,0,.65),
-               0 0 70px rgba(47,224,126,.10);
+               0 0 80px rgba(47,224,126,.12);
   }
   .screen{
-    width:232px;height:384px;border-radius:26px;background:#fff;overflow:hidden;
-    padding:10px 12px 12px;display:flex;flex-direction:column;
+    width:280px;height:474px;border-radius:31px;background:#fff;overflow:hidden;
+    padding:11px 14px;display:flex;flex-direction:column;
   }
-  .island{width:52px;height:11px;border-radius:7px;background:#080D0A;margin:0 auto 11px}
+  .island{width:62px;height:13px;border-radius:8px;background:#080D0A;margin:0 auto 14px}
 
-  .row{
-    display:flex;align-items:center;gap:8px;
-    background:#F1F5F2;border:1px solid #E4EBE7;border-radius:10px;padding:9px 10px;
-  }
-  .row .dot{width:7px;height:7px;border-radius:50%;background:#16B45F;flex:0 0 auto;
-            box-shadow:0 0 0 3px rgba(22,180,95,.18)}
-  .row .t{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:-.1px}
+  .lead{background:#F1F5F2;border:1px solid #E4EBE7;border-radius:12px;padding:14px 13px}
+  .lead .hd{display:flex;align-items:center;gap:8px}
+  .lead .hd span{width:8px;height:8px;border-radius:50%;background:#16B45F;flex:0 0 auto;
+                 box-shadow:0 0 0 4px rgba(22,180,95,.16)}
+  .lead .hd b{font-size:13px;font-weight:600;color:var(--ink);letter-spacing:-.1px}
+  .lead .who{margin-top:7px;font-size:16px;font-weight:500;color:#41544A;letter-spacing:-.2px}
+
+  .arrow{display:flex;align-items:center;justify-content:center;height:42px}
 
   .call{
-    margin-top:9px;background:#EAF8F0;border:1px solid #CFEDDD;border-radius:12px;
-    padding:11px 10px 12px;text-align:center;
+    background:#EAF8F0;border:1px solid #CFEDDD;border-radius:14px;
+    padding:15px 12px 18px;text-align:center;
   }
   .call .hd{
-    display:flex;align-items:center;justify-content:center;gap:6px;
-    font-size:11px;font-weight:600;color:#0C8A4E;letter-spacing:-.05px;
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    font-size:13px;font-weight:600;color:#0C8A4E;letter-spacing:-.15px;
   }
   .call .tm{
-    margin-top:7px;font-family:var(--mono);font-size:30px;font-weight:700;
+    margin-top:9px;font-family:var(--mono);font-size:46px;font-weight:700;
     color:var(--ink);letter-spacing:1px;line-height:1;
   }
   .wave{display:flex;align-items:center;justify-content:space-between;
-        width:176px;height:26px;margin:9px auto 0}
-  .wave span{width:3px;background:#16B45F;display:block;border-radius:2px}
+        width:212px;height:36px;margin:12px auto 0}
+  .wave span{width:4px;background:#16B45F;display:block;border-radius:2px}
 
-  .chips{margin-top:9px;display:flex;flex-direction:column;gap:6px}
-  .chip{
-    display:flex;align-items:center;gap:8px;
-    background:#F1F5F2;border:1px solid #E4EBE7;border-radius:9px;padding:7px 10px;
-    font-size:12px;font-weight:500;color:var(--ink);
+  .chips{
+    margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
   }
-
-  .send{
-    margin-top:auto;height:42px;border-radius:11px;background:#16B45F;
-    display:flex;align-items:center;justify-content:center;gap:7px;
-    color:#fff;font-size:12.5px;font-weight:600;letter-spacing:-.1px;
+  .chip{
+    display:flex;align-items:center;gap:6px;
+    background:#F1F5F2;border:1px solid #E4EBE7;border-radius:20px;padding:7px 11px;
+    font-size:12px;font-weight:500;color:var(--ink);white-space:nowrap;
   }
 
   /* ---------- CTA ---------- */
@@ -153,14 +150,21 @@
     <div class="screen">
       <div class="island"></div>
 
-      <div class="row">
-        <span class="dot"></span>
-        <span class="t">New Property Lead Received</span>
+      <div class="lead">
+        <div class="hd"><span></span><b>New Property Lead</b></div>
+        <div class="who">Ahmed R. · Dubai Hills</div>
+      </div>
+
+      <div class="arrow">
+        <svg width="20" height="26" viewBox="0 0 20 26" fill="none" stroke="#16B45F"
+             stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 2 V20"/><path d="M3.5 14.5 L10 21.5 L16.5 14.5"/>
+        </svg>
       </div>
 
       <div class="call">
         <div class="hd">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#0C8A4E">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#0C8A4E">
             <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1.1l-2.3 2.1z"/>
           </svg>
           DoubleTick Voice AI Calling…
@@ -170,21 +174,10 @@
       </div>
 
       <div class="chips">
-        <div class="chip">
-          <svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#16B45F"/><path d="M7 12.3l3.4 3.4L17 9.1" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Budget
-        </div>
-        <div class="chip">
-          <svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#16B45F"/><path d="M7 12.3l3.4 3.4L17 9.1" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Interested
-        </div>
-        <div class="chip">
-          <svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#16B45F"/><path d="M7 12.3l3.4 3.4L17 9.1" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Ready for Viewing
-        </div>
+        <div class="chip"><svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#16B45F"/><path d="M7 12.3l3.4 3.4L17 9.1" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Budget qualified</div>
+        <div class="chip"><svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#16B45F"/><path d="M7 12.3l3.4 3.4L17 9.1" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Interested</div>
+        <div class="chip"><svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#16B45F"/><path d="M7 12.3l3.4 3.4L17 9.1" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Ready for broker</div>
       </div>
-
-      <div class="send">Qualified <span>→</span> Send to Broker</div>
     </div>
   </div>
 
@@ -196,12 +189,12 @@
 </div>
 <script>
   // deterministic waveform — fixed amplitudes, no randomness
-  const amps = [5,9,15,7,20,26,13,6,11,22,26,15,8,18,24,11,6,14,20,9,13,24,17,7];
+  const amps = [6,11,19,9,25,34,17,8,14,28,36,20,10,23,31,15,7,18,27,12,17,30,21,9];
   const wave = document.getElementById('wave');
   amps.forEach(a=>{
     const s = document.createElement('span');
     s.style.height = a + 'px';
-    s.style.opacity = (0.35 + (a/26)*0.6).toFixed(2);
+    s.style.opacity = (0.35 + (a/36)*0.6).toFixed(2);
     wave.appendChild(s);
   });
 </script>
