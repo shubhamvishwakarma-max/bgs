@@ -20,8 +20,6 @@
     font-family:'Geist',sans-serif;-webkit-font-smoothing:antialiased;
   }
 
-  /* faint skyline, well behind the card */
-  .skyline{position:absolute;left:0;top:700px;width:1080px;height:290px;opacity:.2}
 
   /* ---------- headline (inside the bg's panel: y 120 → 355) ---------- */
   .headline{
@@ -97,32 +95,6 @@
 </head>
 <body>
 <div class="stage">
-
-  <!-- very faint tower skyline -->
-  <svg class="skyline" viewBox="0 0 1080 290" preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#BFF3D8" stop-opacity=".55"/>
-        <stop offset="1" stop-color="#BFF3D8" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <g fill="url(#fade)">
-      <polygon points="60,290.0 60,185.1 98,185.1 98,290.0"/>
-      <polygon points="112,290.0 112,154.3 150,146.9 150,290.0"/>
-      <polygon points="168,290.0 168,203.6 214,203.6 214,290.0"/>
-      <polygon points="232,290.0 246,111.1 260,111.1 274,290.0"/>
-      <polygon points="292,290.0 292,176.5 336,166.6 336,290.0"/>
-      <polygon points="352,290.0 352,216.0 392,216.0 392,290.0"/>
-      <polygon points="516,290.0 528,59.2 540,24.7 552,59.2 564,290.0"/>
-      <polygon points="586,290.0 586,148.1 628,137.0 628,290.0"/>
-      <polygon points="646,290.0 646,197.4 688,197.4 688,290.0"/>
-      <polygon points="706,290.0 706,120.9 716,116.0 748,127.1 748,290.0"/>
-      <polygon points="768,290.0 768,185.1 812,177.7 812,290.0"/>
-      <polygon points="828,290.0 828,217.2 872,217.2 872,290.0"/>
-      <polygon points="890,290.0 890,145.6 934,159.2 934,290.0"/>
-      <polygon points="952,290.0 952,196.2 996,196.2 996,290.0"/>
-    </g>
-  </svg>
 
   <div class="headline">
     <div>Your hottest property leads are <em>going cold</em></div>

@@ -6,7 +6,7 @@ Static 1080×1080 social creatives built on the backgrounds in this repo.
 | --- | --- | --- |
 | `voice-ai-instant-callback.html` | `../bg_01.png` | `voice-ai-instant-callback.png` |
 | `lead-qualification-handoff.html` | `../bg_01.png` | `lead-qualification-handoff.png` |
-| `lead-qualification-simple.html` | `../bg_01.png` + vector skyline | `lead-qualification-simple.png` |
+| `lead-qualification-simple.html` | `../bg_01.png` | `lead-qualification-simple.png` |
 
 ## Rendering
 
